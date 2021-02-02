@@ -1,6 +1,7 @@
 package com.wys.dubbo.consumer.config;
 
 import com.wys.dubbo.consumer.common.annotation.ResponseResult;
+import com.wys.dubbo.consumer.common.exception.GlobalExceptionEnum;
 import com.wys.dubbo.consumer.common.response.ExecuteResult;
 import com.wys.dubbo.result.RpcExecuteResult;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,9 @@ public class ResponseResultHandler implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+        if(body==null){
+            return ExecuteResult.fail(GlobalExceptionEnum.DUBBO_ERROR);
+        }
         if(body instanceof ExecuteResult){
             return body;
         }
