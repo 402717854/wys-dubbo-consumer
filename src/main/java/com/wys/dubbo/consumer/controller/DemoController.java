@@ -20,6 +20,18 @@ public class DemoController {
     public RpcExecuteResult get1(){
         return demoService.get1();
     }
+    @GetMapping("/asyncGet")
+    public RpcExecuteResult asyncGet(){
+        return demoService.asyncGet();
+    }
+    @GetMapping("/get3")
+    public RpcExecuteResult get3(){
+        return demoService.get3();
+    }
+    @GetMapping("/get4")
+    public void get4(){
+        demoService.get4();
+    }
     @GetMapping("/get2")
     public RpcExecuteResult get2(){
         return demoService.get2();
